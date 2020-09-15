@@ -18,13 +18,13 @@ class HtmlChart extends \yii\base\Widget
 
     public $loadVersion = "1.1";
 
-    public $data = array();
+    public $data = [];
 
-    public $options = array();
+    public $options = [];
     
     public $scriptAfterArrayToDataTable = '';
 
-    public $htmlOptions = array();
+    public $htmlOptions = [];
 
     public $tag = "div";
 
