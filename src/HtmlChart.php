@@ -30,7 +30,7 @@ class HtmlChart extends \yii\base\Widget
 
     public function run()
     {
-        $id = ArrayHelper::getValue($this->options, 'id', $this->getId);
+        $id = ArrayHelper::getValue($this->options, 'id', $this->getId());
         // if no container is set, it will create one
         if ($this->containerId == null) {
             $this->htmlOptions['id'] = 'div-chart' . $id;
