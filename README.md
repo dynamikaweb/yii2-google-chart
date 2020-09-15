@@ -1,0 +1,2 @@
+# yii2-google-chart
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6a83f4d9034a4abfbbaf7210a8844b34)](https://app.codacy.com/gh/dynamikaweb/yii2-google-chart?utm_source=github.com&utm_medium=referral&utm_content=dynamikaweb/yii2-google-chart&utm_campaign=Badge_Grade_Dashboard)
