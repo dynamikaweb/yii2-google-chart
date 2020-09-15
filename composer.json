@@ -1,0 +1,33 @@
+{
+    "name": "dynamikaweb/yii2-google-chart",
+    "description": "Yii2 Google Chart Widgets",
+    "type": "yii2-widget",
+    "keywords": [
+        "widget",
+        "chart",
+        "google"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "RodrigoDornelles",
+            "email": "rodrigo@dornelles.me",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "issues": "http://github.com/dynamikaweb/yii2-google-chart/issues",
+        "source": "http://github.com/dynamikaweb/yii2-google-chart"
+    },
+    "require": {
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "*"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false,
+    "autoload": {
+        "psr-4": {
+            "dynamikaweb\\googlechart\\": "src"
+        }
+    }
+}
