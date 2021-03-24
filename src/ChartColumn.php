@@ -3,7 +3,7 @@
 namespace dynamikaweb\googlechart;
 
 
-class ColumnChart extends GoogleChart
+class ChartColumn extends GoogleChart
 {
    public $visualization = 'ColumnChart';
 }
