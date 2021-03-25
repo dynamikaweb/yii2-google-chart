@@ -48,13 +48,20 @@ class GoogleChart extends \yii\base\Widget
 
     protected function getData()
     {
-        $data = array(['label_0', $this->title]);
+        // adapter as title as optional
+        $data = array($this->title? ['label_0', $this->title]: ['label_0']);
         
-        foreach($this->dataProvider->models as $model){
-            $data [] = [
-                strip_tags(array_shift($model)),
-                array_shift($model)
-            ];
+        foreach($this->dataProvider->models as $key => $model){
+            // name column
+            $data [$key + 1] = [strip_tags(array_shift($model))];
+            // values columns
+            foreach($model as $attribute => $value) {
+                $data[$key + 1][] = $value;
+                // add columns legends
+                if(count($data[0]) < count($data[$key + 1])) {
+                    $data[0][] = $attribute;
+                }
+            }
         }
         
         return $data;
