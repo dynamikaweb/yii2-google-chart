@@ -3,10 +3,15 @@
 namespace dynamikaweb\googlechart;
 
 use yii\helpers\ArrayHelper;
+use yii\helpers\Inflector;
 
 class GoogleChart extends \yii\base\Widget
 {
     public $title = '';
+
+    public $estimate;
+
+    public $columns;
 
     public $containerId;
 
@@ -45,13 +50,50 @@ class GoogleChart extends \yii\base\Widget
         echo HtmlChart::widget($this->pluginOptions);
     }
 
+    protected function getDataColumns()
+    {
+        if (empty($this->columns)) {
+            return $this->dataProvider->models;
+        }
+
+        $allModels = [];
+
+        foreach ($this->dataProvider->models as $index => $model) {
+            $allModels[$index] = [];
+            foreach($this->columns as $column) {
+                $allModels[$index][Inflector::slug($column, '_')] = ArrayHelper::getValue($model, $column, null);
+            }
+        }
+
+        return $allModels;
+    }
+
+    public function getEstimateData()
+    {
+        if (empty($this->estimate)) {
+            return $this->dataColumns;
+        }
+
+        $allModels = [];
+        $total = max(1, array_sum(array_map(fn($model) => next($model), $this->dataColumns)));
+        
+        foreach($this->dataColumns as $index => $model)
+        {
+            $keys = array_keys($model);
+            $key = next($keys);
+            $allModels[$index] = $model;
+            $allModels[$index][$key] = ($model[$key]/$total) * 100;
+        }
+
+        return $allModels;
+    }
 
     protected function getData()
     {
         // adapter as title as optional
         $data = array($this->title? ['label_0', $this->title]: ['label_0']);
         
-        foreach($this->dataProvider->models as $key => $model){
+        foreach($this->estimateData as $key => $model){
             // name column
             $data [$key + 1] = [strip_tags(array_shift($model))];
             // values columns
