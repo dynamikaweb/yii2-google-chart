@@ -94,6 +94,9 @@ class GoogleChart extends \yii\base\Widget
         $data = array($this->title? ['label_0', $this->title]: ['label_0']);
         
         foreach($this->estimateData as $key => $model){
+            if (!is_array($model) || empty($model)) {
+                continue;
+            }
             // name column
             $data [$key + 1] = [strip_tags(array_shift($model))];
             // values columns
